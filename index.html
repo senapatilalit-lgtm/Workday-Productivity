@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>The Workday Study — An Independent Research Survey</title>
+<meta name="description" content="A short, independent study on how professionals experience their workday. Anonymous. About 4 minutes." />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- Ambient backdrop: a slow, breathing gradient. Purely decorative, aria-hidden. -->
+<div class="backdrop" aria-hidden="true">
+  <div class="breath breath--one"></div>
+  <div class="breath breath--two"></div>
+</div>
+
+<main id="app" class="app">
+
+  <!-- ===================== WELCOME SCREEN ===================== -->
+  <section id="screen-welcome" class="screen screen--welcome" aria-labelledby="welcome-title">
+    <div class="welcome-card fade-in-up">
+      <div class="brandmark" aria-hidden="true">
+        <img src="assets/logo.svg" alt="" width="52" height="52" />
+      </div>
+
+      <p class="eyebrow">An independent workplace research study</p>
+      <h1 id="welcome-title" class="display">The Workday Study</h1>
+      <p class="welcome-lede">
+        A few honest minutes about how work actually feels — the pressure,
+        the planning, the follow‑through. There are no right answers.
+        We're only trying to understand.
+      </p>
+
+      <ul class="welcome-meta" role="list">
+        <li>
+          <span class="welcome-meta__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.25" stroke="currentColor" stroke-width="1.4"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>About 4 minutes</span>
+        </li>
+        <li>
+          <span class="welcome-meta__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 15.5c3 0 5.5-2.6 5.5-6S15 3.5 12 3.5 6.5 6.1 6.5 9.5s2.5 6 5.5 6Z" stroke="currentColor" stroke-width="1.4"/><path d="M8.5 14.2 6.7 20.5l5.3-2.6 5.3 2.6-1.8-6.3" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </span>
+          <span>Anonymous by default</span>
+        </li>
+        <li>
+          <span class="welcome-meta__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h4l2-7 4 14 2-7h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>27 short questions</span>
+        </li>
+      </ul>
+
+      <button id="btn-start" class="btn btn--primary btn--large" type="button">
+        <span>Start the survey</span>
+        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <p class="fineprint">
+        Your responses are used for research purposes only. You can leave a
+        question blank only where it's marked optional, and you may close
+        this window at any time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SURVEY SCREEN ===================== -->
+  <section id="screen-survey" class="screen screen--survey" aria-live="polite" hidden>
+
+    <header class="survey-header">
+      <div class="survey-header__top">
+        <span id="section-name" class="section-tag">Section A · About Your Work</span>
+        <span id="remaining-count" class="remaining-tag">27 left</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Survey progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <div class="survey-header__bottom">
+        <span id="question-number" class="question-number">Question 1</span>
+        <span id="percent-complete" class="percent-complete">0%</span>
+      </div>
+    </header>
+
+    <div id="question-viewport" class="question-viewport">
+      <!-- Question card is rendered here by ui.js -->
+    </div>
+
+    <footer class="survey-footer">
+      <button id="btn-prev" class="btn btn--ghost" type="button">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Back</span>
+      </button>
+
+      <p id="validation-message" class="validation-message" role="alert"></p>
+
+      <button id="btn-next" class="btn btn--primary" type="button">
+        <span id="btn-next-label">Continue</span>
+        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </footer>
+  </section>
+
+  <!-- ===================== INELIGIBLE SCREEN ===================== -->
+  <section id="screen-ineligible" class="screen screen--end" aria-labelledby="ineligible-title" hidden>
+    <div class="end-card fade-in-up">
+      <div class="end-illustration" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="46" stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
+          <path d="M45 60h30M60 45v30" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+      </div>
+      <h1 id="ineligible-title" class="display display--small">Thank you for your time</h1>
+      <p class="end-lede">
+        This particular study focuses on people currently working 20+ hours
+        a week, so we'll stop here. We're grateful you considered taking
+        part — genuinely.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== THANK YOU SCREEN ===================== -->
+  <section id="screen-thankyou" class="screen screen--end" aria-labelledby="thankyou-title" hidden>
+    <div class="end-card fade-in-up">
+      <div class="end-illustration end-illustration--success" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none">
+          <circle class="ring-draw" cx="60" cy="60" r="46" stroke="currentColor" stroke-width="1.4"/>
+          <path class="check-draw" d="M42 61l13 13 24-28" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <h1 id="thankyou-title" class="display display--small">Thank you</h1>
+      <p class="end-lede">
+        Thank you for participating in this independent workplace research
+        study. Your responses will help us better understand how
+        professionals experience their workday.
+      </p>
+      <p id="email-confirmation" class="end-note" hidden>
+        We'll send the study findings to the email address you shared, once
+        the research is complete.
+      </p>
+      <p class="end-signature">— The Workday Study team</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/survey.js"></script>
+</body>
+</html>

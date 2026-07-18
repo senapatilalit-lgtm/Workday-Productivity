@@ -1,0 +1,70 @@
+/* ==========================================================================
+   The Workday Study — Responsive rules (mobile-first base already in
+   style.css; this file adds refinements for larger viewports and a few
+   small-screen tightenings).
+   ========================================================================== */
+
+/* ---- Small phones ---- */
+@media (max-width: 380px) {
+  .screen { padding: var(--space-4) var(--space-3); }
+  .display { font-size: 1.8rem; }
+  .question-card { padding: var(--space-5) var(--space-4) var(--space-4); }
+  .welcome-meta li { font-size: 12.5px; padding: var(--space-2) var(--space-3); }
+  .rating-option__circle { max-width: 42px; }
+  .btn--large { width: 100%; justify-content: center; }
+}
+
+/* ---- Phones / small tablets ---- */
+@media (max-width: 640px) {
+  .survey-footer {
+    flex-wrap: wrap;
+  }
+  .validation-message {
+    order: 3;
+    width: 100%;
+    text-align: left;
+    margin-top: var(--space-2);
+  }
+  .btn--ghost span { display: none; }
+  .btn--ghost { padding: 13px; }
+  .rating-scale { gap: var(--space-1); }
+  .rating-option__label { display: none; }
+}
+
+/* ---- Tablets and up ---- */
+@media (min-width: 768px) {
+  .screen--survey { padding-top: var(--space-7); }
+  .question-card { padding: var(--space-7) var(--space-7) var(--space-6); }
+  .welcome-card { align-items: flex-start; }
+}
+
+/* ---- Desktop ---- */
+@media (min-width: 1024px) {
+  .screen { padding: var(--space-7) var(--space-5); }
+  .welcome-card, .screen--survey { max-width: 640px; }
+}
+
+/* ---- Large desktop: keep line lengths sane, add breathing room ---- */
+@media (min-width: 1400px) {
+  .welcome-card, .screen--survey { max-width: 680px; }
+}
+
+/* ---- Landscape phones: shrink vertical rhythm ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .screen { padding: var(--space-4); }
+  .survey-header { margin-bottom: var(--space-3); }
+  .question-card { padding: var(--space-4); }
+  .survey-footer { padding: var(--space-4) 0; }
+}
+
+/* ---- Fine pointer devices: slightly tighter hit states are fine ---- */
+@media (hover: hover) and (pointer: fine) {
+  .option:hover .option__control { border-color: var(--color-accent); }
+}
+
+/* ---- Coarse pointer (touch): ensure comfortable tap targets ---- */
+@media (hover: none) and (pointer: coarse) {
+  .option { padding: 16px; }
+  .btn { padding: 15px 22px; }
+  .btn--large { padding: 17px 28px; }
+}
